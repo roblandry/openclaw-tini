@@ -1,0 +1,35 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Keep wrapper image version mirrored to upstream OpenClaw tags",
+      "fileMatch": [
+        "^Dockerfile$",
+        "^README\\.md$",
+        "^\\.github/workflows/build\\.yaml$"
+      ],
+      "matchStrings": [
+        "OPENCLAW_VERSION[=:] (?<currentValue>[0-9]{4}\\.[0-9]+\\.[0-9]+)",
+        "OPENCLAW_VERSION=(?<currentValue>[0-9]{4}\\.[0-9]+\\.[0-9]+)",
+        "DEFAULT_OPENCLAW_VERSION: (?<currentValue>[0-9]{4}\\.[0-9]+\\.[0-9]+)",
+        "default: (?<currentValue>[0-9]{4}\\.[0-9]+\\.[0-9]+)",
+        "openclaw-tini:(?<currentValue>[0-9]{4}\\.[0-9]+\\.[0-9]+)",
+        "openclaw/openclaw:(?<currentValue>[0-9]{4}\\.[0-9]+\\.[0-9]+)"
+      ],
+      "depNameTemplate": "ghcr.io/openclaw/openclaw",
+      "datasourceTemplate": "docker"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "ghcr.io/openclaw/openclaw"
+      ],
+      "groupName": "OpenClaw wrapper version"
+    }
+  ]
+}

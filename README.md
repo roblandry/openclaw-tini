@@ -56,6 +56,19 @@ Published image:
 ghcr.io/roblandry/openclaw-tini:2026.4.26
 ```
 
+## Versioning
+
+Image tags intentionally follow upstream OpenClaw image tags one-for-one.
+
+For example:
+
+```text
+ghcr.io/openclaw/openclaw:2026.4.26
+ghcr.io/roblandry/openclaw-tini:2026.4.26
+```
+
+The wrapper version should be bumped whenever the wrapped OpenClaw version changes. Renovate is configured to watch `ghcr.io/openclaw/openclaw` and open a PR that updates the Dockerfile default, workflow default, and README examples together.
+
 ## Retirement Plan
 
 This is a workaround, not a fork of OpenClaw. Once upstream either:
